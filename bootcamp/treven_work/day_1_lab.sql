@@ -1,28 +1,28 @@
--- create type season_stats as (
---     season int,
---     gp int,
---     pts real,
---     reb real,
---     ast real
--- );
+create type season_stats as (
+    season int,
+    gp int,
+    pts real,
+    reb real,
+    ast real
+);
 
--- create type scoring_class as enum ('star', 'good', 'average', 'bad');
+create type scoring_class as enum ('star', 'good', 'average', 'bad');
 
 -- drop table players;
--- create table players (
---     player_name text,
---     height text,
---     college text,
---     country text,
---     draft_year text,
---     draft_round text,
---     draft_number text,
---     season_stats season_stats[],
---     scoring_class scoring_class,
---     years_since_last_season int,
---     current_season int,
---     primary key(player_name, current_season)
--- );
+create table players (
+    player_name text,
+    height text,
+    college text,
+    country text,
+    draft_year text,
+    draft_round text,
+    draft_number text,
+    season_stats season_stats[],
+    scoring_class scoring_class,
+    years_since_last_season int,
+    current_season int,
+    primary key(player_name, current_season)
+);
 
 insert into players
 with 
@@ -107,18 +107,18 @@ full outer join yesterday y on t.player_name = y.player_name
 -- from unnested
 -- ;
 
-select
-    player_name,
+-- select
+--     player_name,
     
-    (season_stats[cardinality(season_stats)]::season_stats).pts /
-    case
-        when (season_stats[1]::season_stats).pts = 0
-            then 1
-        else (season_stats[1]::season_stats).pts
-    end as huh
-from players
-where current_season = 2001
--- and player_name = 'Michael Jordan'
-order by 2 desc
-;
+--     (season_stats[cardinality(season_stats)]::season_stats).pts /
+--     case
+--         when (season_stats[1]::season_stats).pts = 0
+--             then 1
+--         else (season_stats[1]::season_stats).pts
+--     end as huh
+-- from players
+-- where current_season = 2001
+-- -- and player_name = 'Michael Jordan'
+-- order by 2 desc
+-- ;
 
