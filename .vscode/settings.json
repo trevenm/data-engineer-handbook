@@ -1,6 +1,9 @@
 {
     "sqltools.connections": [
         {
+            "pgOptions": {
+                "query_timeout": 120000
+            },
             "previewLimit": 50,
             "server": "localhost",
             "port": 5432,
