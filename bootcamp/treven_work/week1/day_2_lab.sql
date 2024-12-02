@@ -109,10 +109,10 @@ with
                     ls.end_season
                 )::scd_type,
                 row(
-                   ls.scoring_class,
-                    ls.is_active,
-                    ls.current_season,
-                    ls.current_season
+                    ts.scoring_class,
+                    ts.is_active,
+                    ts.current_season,
+                    ts.current_season
                 )::scd_type
             ]) as records
         from this_season_data ts 
